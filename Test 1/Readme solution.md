@@ -4,6 +4,7 @@
     La sintaxis del método Object.assign() es la siguiente:
     Object.assign(target,sources..). Este método copia sólo las propiedades enumerables y propias del objeto origen(source) a un objeto destin(target).  
     Por tanto, el valor de las variables una vez ejecutado el string sería:
+    
         rgb = {
             red: #FF0000,
             green: #00FF00,
@@ -46,28 +47,28 @@
     Podría solucionarse con el uso de un polyfill que diera soporte a ese método.
 
     Este polyfill está verificado:
+    
+        if (typeof Object.assign != 'function') {
+            Object.assign = function (target, varArgs) { // .length of function is 2
+            'use strict';
+            if (target == null) { // TypeError if undefined or null
+                throw new TypeError('Cannot convert undefined or null to object');
+            }
 
-    if (typeof Object.assign != 'function') {
-        Object.assign = function (target, varArgs) { // .length of function is 2
-        'use strict';
-        if (target == null) { // TypeError if undefined or null
-            throw new TypeError('Cannot convert undefined or null to object');
-        }
+            var to = Object(target);
 
-        var to = Object(target);
+            for (var index = 1; index < arguments.length; index++) {
+                var nextSource = arguments[index];
 
-        for (var index = 1; index < arguments.length; index++) {
-            var nextSource = arguments[index];
-
-            if (nextSource != null) { // pasamos si es undefined o null
-                for (var nextKey in nextSource) {
-                    // Evita un error cuando 'hasOwnProperty' ha sido sobrescrito
-                    if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                        to[nextKey] = nextSource[nextKey];
+                if (nextSource != null) { // pasamos si es undefined o null
+                    for (var nextKey in nextSource) {
+                        // Evita un error cuando 'hasOwnProperty' ha sido sobrescrito
+                        if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                            to[nextKey] = nextSource[nextKey];
+                        }
                     }
                 }
             }
+            return to;
+            };
         }
-        return to;
-        };
-    }
