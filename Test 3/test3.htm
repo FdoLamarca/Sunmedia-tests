@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.4/bluebird.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+    
+    'use strict';
+        var promise = new Promise(function(resolve, reject) {
+            setTimeout(function () {
+                if (Math.round(Math.random()) === 1) {
+                    resolve("Success!");
+                } else {
+                    reject("Fail!");
+                }
+            }, 1000);
+        });
+
+        promise
+            .then(function(successMessage) {
+                console.log("Yes! " + successMessage);
+            })
+            .catch(function(failMessage) {
+                console.log("No! " + failMessage);
+            });
+        
+	</script>
+	<header>
+		
+	</header>
+	<nav>
+		
+	</nav>
+	<aside>
+		
+	</aside>
+	<section>
+		<article>
+			
+		</article>
+	</section>
+	<footer>
+		
+	</footer>
+</body>
+</html>
