@@ -1,5 +1,5 @@
-# Sunmedia-tests
-Solución tests Sunmedia
+# Sunmedia-test
+Solución test Sunmedia
 
 Adjunto se encuentran las soluciones a los test, organizados por carpetas. Están incluidos los siguientes archivos:
 
